@@ -34,30 +34,17 @@ char	*get_value(char *text, int *start_i)
 	return (str);
 }
 
-long long	process_number(char *num)
-{
-	long long	number;
-
-	number = ft_atoi(num);
-	if (number < 0)
-	{
-		write(1, "minus ", 6);
-		number *= -1;
-	}
-	return (number);
-}
-
-t_list	*process(char *file)
+t_list	*logic(char *file)
 {
 	int		i;
 	int		fd;
-	t_list	*tab;
+	t_list	*list;
 	char	*text;
 	int		start_i;
 
 	fd = open(file, O_RDONLY);
-	tab = malloc(sizeof(t_list) * 41);
-	if (fd == -1 || !(tab))
+	list = malloc(sizeof(t_list) * 41);
+	if (fd == -1 || !(list))
 		return (0);
 	text = malloc(sizeof(char) * 5000);
 	if (!(text))
@@ -67,10 +54,12 @@ t_list	*process(char *file)
 	start_i = 0;
 	while (i < 41)
 	{
-		tab[i].nb = get_number(text, &start_i);
-		tab[i].val = get_value(text, &start_i);
+		list[i].nb = get_number(text, &start_i);
+		list[i].val = get_value(text, &start_i);
+		
 		i++;
 	}
 	close(fd);
-	return (tab);
+	free(text);
+	return (list);
 }

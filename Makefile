@@ -9,7 +9,7 @@ FLAGS = -Wall -Werror -Wextra
 all:	${NAME}
 
 ${NAME}: ${OBJS}
-	cc -o ${NAME} ${SRCS} -Iincludes ${FLAGS}
+	gcc -o ${NAME} ${SRCS} -Iincludes ${FLAGS}
 
 clean:
 	rm -f ${OBJS}

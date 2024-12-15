@@ -10,9 +10,9 @@ int ft_strcmp(char *s1, char *s2)
 	return (s1[i] - s2[i]);
 }
 
-long long	ft_atoi(const char *str)
+unsigned long long	ft_atoi(const char *str)
 {
-	long long	result;
+	unsigned long long	result;
 	int			sign;
 
 	result = 0;
@@ -39,4 +39,31 @@ void	ft_putstr(char *str)
 		write(1, (str + i), 1);
 		i++;
 	}
+}
+
+int ft_puterr(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		write(2, (str + i), 1);
+		i++;
+	}
+	return (1);
+}
+
+void ft_free(t_list *ptr)
+{
+	int	i;
+
+	i = 0;
+	while (i < 41)
+	{
+		free(ptr[i].nb);
+		free(ptr[i].val);
+		i++;
+	}
+	free(ptr);
 }
